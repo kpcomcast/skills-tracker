@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SkillsController {
+    private static String uName = "";
+    private static String fChoice = "";
+    private static String sChoice = "";
+    private static String tChoice = "";
+
     @GetMapping
     @ResponseBody
     public String startSkills() {
@@ -52,6 +57,10 @@ public class SkillsController {
     // second --> String
     // third --> String
     public String formResults(@RequestParam String username, @RequestParam String first, @RequestParam String second, @RequestParam String third) {
+        uName = username;
+        fChoice = first;
+        sChoice = second;
+        tChoice = third;
         return "<h1>" + username + "</h1>" +
                 "<ol>" +
                 "<li>" + first + "</li>" +
@@ -59,4 +68,17 @@ public class SkillsController {
                 "<li>" + third + "</li>" +
                 "</ol>";
     }
+
+    @GetMapping("/results")
+    @ResponseBody
+    public String startResults() {
+        return "<h1>Results</h1>" +
+                "<h2>Name: " + uName + "</h2>" +
+                "<ol>" +
+                "<li>" + fChoice + "</li>" +
+                "<li>" + sChoice + "</li>" +
+                "<li>" + tChoice + "</li>" +
+                "</ol>";
+    }
+
 }
